@@ -1,24 +1,70 @@
-import logo from './logo.svg';
+
+import React from 'react';
 import './App.css';
 
-function App() {
+import Busqueda from './Busqueda/Busqueda';
+import ListaContacto from './Listacontactos';
+import Contacto from './Contacto';
+import AgregarContacto from './AgregaContacto';
+function App(props) {
+
+  let contactos=[
+
+    {
+      nombre:"gullermo",
+      telefono:"987654321",
+      correo:"marcelo@gmail.com"
+    }
+,
+    {
+        nombre:"Marcelo",
+        telefono:"987654321",
+        correo:"marcelo@gmail.com"
+    }
+,
+    {
+      nombre:"fabian",
+      telefono:"987654321",
+      correo:"marcelo@gmail.com"
+    }
+  ]
+let [textoBusqueda,setTextoBusqueda]=React.useState('');
+let contactosFiltrados=[];
+if(textoBusqueda.length>0){
+ 
+  let textoBusquedaLowecase=textoBusqueda.toLowerCase();
+  contactosFiltrados=contactos.filter((Contacto)=>{
+   return Contacto.nombre.toLowerCase().includes(textoBusquedaLowecase);
+
+  })
+}
+else{
+contactosFiltrados=contactos;
+}
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <React.Fragment>
+    <h1> directorio</h1>
+    <Busqueda textoBusqueda={textoBusqueda} setTextoBusqueda={setTextoBusqueda} />
+    <ListaContacto>
+    {
+      contactosFiltrados.map((contactos)=>{
+     return(
+      <Contacto
+      nombre={contactos.nombre}
+      telefono={contactos.telefono}
+      correo={contactos.correo}
+      />
+     )
+
+      })
+    }
+
+      <Contacto/>
+    </ListaContacto>
+    <AgregarContacto/>
+
+  </React.Fragment>
   );
 }
 
