@@ -1,0 +1,43 @@
+*
+{
+text-align: center;
+    background-color: rgb(123, 202, 239);
+}
+
+
+*
+{
+text-align: center;
+background-color: 196, 220, 212;
+}
+
+.p
+{
+background-color: rgb(178, 78, 78);
+}
+
+
+.p1
+{
+  background-color: rgb(109, 185, 159);  
+}
+
+.caja1{
+  display: flex;
+  justify-content: center;
+  height: 50%;
+}
+
+.caja{
+
+  
+  text-align: center;
+   width:  20vw;
+    height: 40vh;
+    background-color: rgb(76, 186, 183);
+    font-size: 15px;
+   /* background-position: center;*/
+   /* background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;*/
+}

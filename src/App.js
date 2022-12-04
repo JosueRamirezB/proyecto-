@@ -6,46 +6,27 @@ import Busqueda from './Busqueda/Busqueda';
 import ListaContacto from './Listacontactos';
 import Contacto from './Contacto';
 import AgregarContacto from './AgregaContacto';
-function App(props) {
+import { DirectorioContext,DirectorioProvider} from './Context/DirectorioProvider';
 
-  let contactos=[
+function App() {
+let modal=false;
 
-    {
-      nombre:"gullermo",
-      telefono:"987654321",
-      correo:"marcelo@gmail.com"
-    }
-,
-    {
-        nombre:"Marcelo",
-        telefono:"987654321",
-        correo:"marcelo@gmail.com"
-    }
-,
-    {
-      nombre:"fabian",
-      telefono:"987654321",
-      correo:"marcelo@gmail.com"
-    }
-  ]
-let [textoBusqueda,setTextoBusqueda]=React.useState('');
-let contactosFiltrados=[];
-if(textoBusqueda.length>0){
- 
-  let textoBusquedaLowecase=textoBusqueda.toLowerCase();
-  contactosFiltrados=contactos.filter((Contacto)=>{
-   return Contacto.nombre.toLowerCase().includes(textoBusquedaLowecase);
-
-  })
-}
-else{
-contactosFiltrados=contactos;
-}
-  
   return (
+ <DirectorioProvider>
+  <DirectorioContext.Consumer>
+  {
+  ({
+contactosFiltrados,
+borrarcontactos,
+contadorContactos,
+Modal,
+setModal
+
+
+   })=>(
   <React.Fragment>
-    <h1> directorio</h1>
-    <Busqueda textoBusqueda={textoBusqueda} setTextoBusqueda={setTextoBusqueda} />
+    <h1> Directorio[{contadorContactos}]</h1>
+    <Busqueda  />
     <ListaContacto>
     {
       contactosFiltrados.map((contactos)=>{
@@ -54,18 +35,49 @@ contactosFiltrados=contactos;
       nombre={contactos.nombre}
       telefono={contactos.telefono}
       correo={contactos.correo}
+      borrarcontactos={()=>{borrarcontactos(contactos.nombre)}}
       />
      )
 
       })
     }
 
-      <Contacto/>
     </ListaContacto>
-    <AgregarContacto/>
+    <button onClick={()=>{setModal(true)}}>Agregar</button>
+   {Modal&&<AgregarContacto/>} 
 
   </React.Fragment>
+
+    )
+  }
+  </DirectorioContext.Consumer>
+ </DirectorioProvider>
+
+
+
   );
 }
 
 export default App;
+
+/*
+let contactos=[
+  {
+    nombre:"gullermo",
+    telefono:"987654321",
+    correo:"marcelo@gmail.com"
+  }
+,
+  {
+      nombre:"Marcelo",
+      telefono:"987654321",
+      correo:"marcelo@gmail.com"
+  }
+,
+  {
+    nombre:"fabian",
+    telefono:"987654321",
+    correo:"marcelo@gmail.com"
+  }
+]
+*/
