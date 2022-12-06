@@ -42,17 +42,17 @@ function AgregarContacto()
   };
 
   return (
-      <div className="button">
-          <from className="inpt3">
-              <h2 className="titulo1">Agregar Contactos</h2>
+      <div className="caja1">
+          <form className="caja">
+              <h2 className="Agrega">Agregar Contactos</h2>
               <input placeholder="Nombre" onChange={onchangeNombre}></input>
               <input placeholder="Telefono" onChange={onchangeTelefono}></input>
               <input placeholder="Correro" onChange={onchangeCorreo}></input>
               <div className="botones">
-                  <button typeof="sunmit" className="Canselar" onClick={modalCanselar}>Cancelar</button>
-                  <button className="Agregar" onClick={modalAgregar}>Agregar</button>
+                  <button typeof="sunmit" className="p" onClick={modalCanselar}>Cancelar</button>
+                  <button className="p1" onClick={modalAgregar}>Agregar</button>
               </div>
-          </from>
+          </form>
       </div>
   )
 }
